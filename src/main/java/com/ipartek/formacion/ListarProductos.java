@@ -39,7 +39,7 @@ public class ListarProductos {
 			System.out.println("-------------------------------");
 			
 			//TODO pedir el nombre del producto a insertar por pantalla
-						
+			
 			
 			while (rs.next()) {
 					int id = rs.getInt("id");
