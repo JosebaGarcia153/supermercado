@@ -16,10 +16,10 @@ public class InsertarProductos {
 		try ( 
 				Scanner keyboard = new Scanner(System.in);
 				Connection conexion = ConnectionManager.getConnection();
+				PreparedStatement pst = conexion.prepareStatement(SQL);
 				){
 			
-			//Realizar una consulta
-			PreparedStatement pst = conexion.prepareStatement(SQL);
+			
 
 			System.out.println("Insertar producto");
 			System.out.println("-------------------------------");			
@@ -36,6 +36,7 @@ public class InsertarProductos {
 					pst.setString(1, prod);
 					
 					//affectedRows es el numero de registros insertados
+					//executeUpdate siempre se usa con INSER, UPDATE y DELETE y devuelve un int de las filas aceptadas
 					int affectedRows = pst.executeUpdate();
 					
 

@@ -1,7 +1,6 @@
 package com.ipartek.formacion;
 
 import java.sql.*;
-import java.util.Scanner;
 
 import com.ipartek.formacion.modelo.ConnectionManager;
 import com.ipartek.formacion.modelo.Producto;
@@ -9,8 +8,6 @@ import com.ipartek.formacion.modelo.Producto;
 public class ListarProductos {
 	
 	public static void main(String[] args) {
-		
-		Scanner keyboard = new Scanner(System.in);
 		
 		final String SQL = "SELECT id, nombre FROM producto ORDER BY nombre ASC; ";	
 		
@@ -21,6 +18,8 @@ public class ListarProductos {
 
 				//Realizar una consulta
 				PreparedStatement pst = conexion.prepareStatement(SQL);
+				
+				//executeQuerry se usa siempre que se hace un SELECT y devuelve los resultads del ResultSet
 				ResultSet rs = pst.executeQuery();
 				){
 			

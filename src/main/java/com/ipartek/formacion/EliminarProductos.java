@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.Scanner;
 
 import com.ipartek.formacion.modelo.ConnectionManager;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 public class EliminarProductos {
 
@@ -16,10 +15,8 @@ public class EliminarProductos {
 		try ( 
 				Scanner keyboard = new Scanner(System.in);
 				Connection conexion = ConnectionManager.getConnection();
+				PreparedStatement pst = conexion.prepareStatement(SQL);
 				){
-			
-			//Realizar una consulta
-			PreparedStatement pst = conexion.prepareStatement(SQL);
 			
 			ListarProductos.main(args);
 			

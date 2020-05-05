@@ -16,10 +16,8 @@ public class EditarProductos {
 		try ( 
 				Scanner keyboard = new Scanner(System.in);
 				Connection conexion = ConnectionManager.getConnection();
+				PreparedStatement pst = conexion.prepareStatement(SQL);
 				){
-			
-			//Realizar una consulta
-			PreparedStatement pst = conexion.prepareStatement(SQL);
 			
 			ListarProductos.main(args);
 			
@@ -51,8 +49,12 @@ public class EditarProductos {
 				} catch (NumberFormatException e) {
 
 					System.out.println("Tienes que insertar un numero de ID valido.");
-
-				} catch (SQLException e) {
+				
+				} catch (MySQLIntegrityConstraintViolationException e) {
+					
+					System.out.println("El nombre ya existe en la base de datos.");
+					
+				}  catch (SQLException e) {
 
 					System.out.println("El ID del producto no existe en la base de datos.");
 				} 
