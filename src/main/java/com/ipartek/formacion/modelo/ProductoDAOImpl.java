@@ -109,6 +109,7 @@ private static ProductoDAOImpl instance = null;
 			int affectedRows = pst.executeUpdate();
 
 			if (affectedRows == 1) {
+				
 				System.out.println("Numero de registros creados " + affectedRows);
 				
 				try ( ResultSet rsKeys = pst.getGeneratedKeys(); ) {
@@ -157,7 +158,7 @@ private static ProductoDAOImpl instance = null;
 			
 		} catch (SQLException e) {
 
-			throw new SQLException("El nombre ya existe en la base de datos.");
+			throw new SQLException("El nombre " + prod.getNombre() + " ya existe en la base de datos.");
 
 		} 
 		return prod;
