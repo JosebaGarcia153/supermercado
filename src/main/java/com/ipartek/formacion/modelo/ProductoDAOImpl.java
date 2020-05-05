@@ -180,11 +180,7 @@ private static ProductoDAOImpl instance = null;
 			
 			int affectedRows = pst.executeUpdate();
 
-			if (affectedRows == 1) {
-				
-				System.out.println("El producto ha sido eliminado.");
-			
-			} else {
+			if (affectedRows != 1) {
 				
 				throw new Exception ("No se pudo eliminar el registro de id = " + id);
 			}
