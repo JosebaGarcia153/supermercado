@@ -84,7 +84,7 @@ private static ProductoDAOImpl instance = null;
 					
 				} else {
 					
-					throw new Exception ("No se pudo encontrar el registro de = + id");
+					throw new Exception ("No se pudo encontrar el registro de id = " + id);
 				}
 			}	
 		}
@@ -94,7 +94,10 @@ private static ProductoDAOImpl instance = null;
 	@Override
 	public Producto create(Producto prod) throws Exception {
 
-		Producto p = new Producto();
+		if (prod.getNombre() == null) {
+
+			throw new Exception("No se ha insertado un nombre de producto.");
+		}
 
 		try ( 
 				Connection conexion = ConnectionManager.getConnection();
@@ -111,23 +114,22 @@ private static ProductoDAOImpl instance = null;
 				try ( ResultSet rsKeys = pst.getGeneratedKeys(); ) {
 					
 					if (rsKeys.next()) {
-						
-						p.setId(rsKeys.getInt(1));
-					}	
+
+						prod.setId(rsKeys.getInt(1));
+
+					}
 				}
-				p.setNombre(prod.getNombre());
+			} else {
+
+				throw new Exception ("No se pudo crear el registro para nombre = " + prod.getNombre());
 			}
 
-		} catch (MySQLIntegrityConstraintViolationException e) {
+		} catch (SQLException e) {
 
-			System.out.println("El nombre ya existe en la base de datos.");
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
+			throw new SQLException("El nombre ya existe en la base de datos.");
 		}
 
-		return p;
+		return prod;
 	}
 
 	@Override
@@ -150,7 +152,7 @@ private static ProductoDAOImpl instance = null;
 
 			if (affectedRows != 1) {
 				
-				throw new Exception ("No se pudo eliminar el registro de =" + prod.getId());
+				throw new Exception ("No se pudo editar el registro de id = " + prod.getId());
 			}
 			
 		} catch (SQLException e) {
@@ -183,7 +185,7 @@ private static ProductoDAOImpl instance = null;
 			
 			} else {
 				
-				throw new Exception ("No se pudo eliminar el registro de =" + id);
+				throw new Exception ("No se pudo eliminar el registro de id = " + id);
 			}
 		}
 		return p;
