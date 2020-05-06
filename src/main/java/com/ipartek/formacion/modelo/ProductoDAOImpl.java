@@ -185,4 +185,10 @@ private static ProductoDAOImpl instance = null;
 		}
 		return p;
 	}
+
+	@Override
+	public ArrayList<Producto> readByNombre(String nombre) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

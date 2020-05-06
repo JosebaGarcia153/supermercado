@@ -32,8 +32,7 @@ public class InsertarProductosConDAO {
 
 		} catch (Exception e) {
 			
-			System.out.println("Something went wrong.");
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} 
 	}
 }
