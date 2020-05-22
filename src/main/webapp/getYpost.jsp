@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<a href="index.jsp">VOLVER</a>
+
 	<h1>Ejemplos de GET y POST</h1>
 
 	<h2>Ejemplo GET</h2>
@@ -20,12 +22,12 @@
 	
 	<form action="sumar" method="post" >
 	
-		<input type="number" name="op1" value="${op1}" placeholder="introduce un numero">
+		<input type="number" name="op1" value="${op1}" placeholder="introduce un numero" required>
 		<br>
-		<input type="number" name="op2" value="${op2}" placeholder="introduce otro numero">
+		<input type="number" name="op2" value="${op2}" placeholder="introduce otro numero" required>
 		<br>
 		<input type="submit" value="Sumar">
-	
+		<p style="color:red;">${mensaje}</p>
 	</form>
 	
 	<h2>RESULTADO</h2>

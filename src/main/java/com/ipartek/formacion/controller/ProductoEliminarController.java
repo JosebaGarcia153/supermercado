@@ -43,13 +43,17 @@ public class ProductoEliminarController extends HttpServlet {
 			mensaje = "Eliminado " + p.getNombre();
 			
 		} catch (Exception e) {
+			
 			mensaje = "Error " + e.getMessage();
 			e.printStackTrace();
+			
+		} finally {
+			
+			ArrayList<Producto> productos = dao.readAll();
+			request.setAttribute("producto",  productos);
+			request.setAttribute("mensaje", mensaje);
+			request.getRequestDispatcher("tabla-producto.jsp").forward(request, response);
 		}
-		
-		ArrayList<Producto> productos = dao.readAll();
-		request.setAttribute("producto",  productos);
-		request.getRequestDispatcher("tabla-producto.jsp").forward(request, response);
 	}
 
 	/**

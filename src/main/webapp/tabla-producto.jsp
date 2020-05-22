@@ -31,17 +31,20 @@ td {
 			<tr>
 				<td>Id</td>
 				<td>Nombre</td>
+				<td>Operaciones</td>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${producto}" var="p">
+			<c:forEach items="${productos}" var="p">
 				<tr>
 					<td>${p.id}</td>
 					<%
 						// no hace falta usar el getter p.id == p.getId()
 					%>
 					<td>${p.nombre}</td>
-					<td><a href="producto-eliminar?id=${p.id}">ELIMINAR</a></td>
+					<td><a href="producto-eliminar?id=${p.id}">ELIMINAR</a>
+						<a href="producto?id=${p.id}">EDITAR</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
