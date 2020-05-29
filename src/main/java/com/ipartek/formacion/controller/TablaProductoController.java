@@ -42,10 +42,10 @@ public class TablaProductoController extends HttpServlet {
 		//conseguir los alumnos de la base de datos
 		
 		ProductoDAOImpl dao = ProductoDAOImpl.getInstance();
-		ArrayList<Producto> producto = dao.readAll();
+		ArrayList<Producto> productos = dao.readAll();
 		
 		//enviar la informacion a la vista
-		request.setAttribute("producto",  producto);
+		request.setAttribute("productos",  productos);
 		
 		
 		//ir a la nueva vista o jsp

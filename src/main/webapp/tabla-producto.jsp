@@ -1,32 +1,20 @@
 <%@page import="com.ipartek.formacion.modelo.Producto"%>
-<%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<jsp:include page ="includes/cabecera.jsp">
+	<jsp:param  name="pagina" value="tabla-p" />
+	<jsp:param name="title" value="Tabla de Productos" />
+</jsp:include>
 
-<style>
-td {
-	border: 1px solid black
-}
-</style>
-</head>
-<body>
-	<
-	<a href="index.jsp">VOLVER</a>
-
-	<h1>Tabla con Productos</h1>
+	<h1 class="mt-5 pt-5">Tabla con Productos</h1>
 
 	<%
-		// Podemos usar el ${}  EL - Expresion Lenguage en los JSPs
+		// Podemos usar el ${}  "EL" - "Expresion Language" en los JSPs
 		// suele ser mas comodo que tener que usar < % % >, a estos porcentajes se les llama SCRIPLETS
 		// ademas se pueden combinar con JSTL - Java Servlet Tag Libraries
 	%>
 
-	<table>
+	<table id="table">
 		<thead>
 			<tr>
 				<td>Id</td>
@@ -42,13 +30,13 @@ td {
 						// no hace falta usar el getter p.id == p.getId()
 					%>
 					<td>${p.nombre}</td>
-					<td><a href="producto-eliminar?id=${p.id}">ELIMINAR</a>
-						<a href="producto?id=${p.id}">EDITAR</a>
+					<td>
+						<a href="producto?id=${p.id}"><i class="fas fa-edit fa-lg"></i></a>
+						<a href="producto-eliminar?id=${p.id}"><i class="fas fa-trash fa-lg"></i></a>	
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 
-</body>
-</html>
+<%@include file="includes/pie.jsp" %>

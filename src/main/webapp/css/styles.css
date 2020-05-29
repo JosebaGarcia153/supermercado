@@ -1,0 +1,95 @@
+body {
+    min-width: 540px;
+}
+
+main {
+    min-height: 80vh;
+}
+
+.card-body {
+    line-height: 0.5rem;
+}
+
+.discount {
+    color: #DDD;
+    background-color: rgb(255, 90, 68);
+    font-size: 0.6rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    width: 2rem;
+    height: 1rem;
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+    text-align: center;
+}
+
+.normal-price {
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+.old-price {
+    color: rgb(83, 83, 83);
+    font-size: 0.4rem;
+    text-decoration: line-through;
+}
+
+.new-price {
+    color: rgb(255, 90, 68);
+    font-size: 0.6rem;
+}
+
+.price-per-unit {
+    color: rgb(175, 175, 175);
+    font-size: 0.6rem;    
+}
+
+.description {
+    color: rgb(83, 83, 83);
+    font-size: 0.6rem;
+    line-height: 1rem;
+}
+
+.left-btn {
+    border: solid rgb(83, 83, 83) 1px;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-top-right-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+    width: 2rem;
+    text-align: center;
+}
+
+.right-btn {
+    border: solid rgb(83, 83, 83) 1px;
+    border-top-left-radius: 0rem;
+    border-bottom-left-radius: 0rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    width: 2rem;
+    text-align: center;
+}
+
+.center-input {
+    border: solid rgb(83, 83, 83) 1px;
+    width: 2rem;
+    text-align: center;
+}
+
+.to-top {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.copyright {
+    color: #DDD;
+    font-size: 0.7rem;
+}
+
+th, td {
+    text-align: center;
+}

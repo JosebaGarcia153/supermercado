@@ -1,4 +1,12 @@
-<h1>Pagina principal</h1>
+<% // @include file="includes/cabecera.jsp" %>
+
+<jsp:include page ="includes/cabecera.jsp">
+	<jsp:param name="pagina" value="inicio" />
+	<jsp:param name="title" value="Inicio" />
+</jsp:include>
+
+<h1 class="mt-5 pt-5">Pagina principal</h1>
+
 
 <%
 	//Esto es java
@@ -13,3 +21,7 @@
 <a href="getYpost.jsp">GET y POST</a><br/>
 <a href="formulario.jsp">Ejemplo formulario completo</a><br/>
 <a href="MiPrimerServlet?nombre=joseba&apellido=garcia&email=aaaaa">Mi Primer Servlet</a><br/>
+
+<%@include file="includes/pie.jsp" %>
+
+

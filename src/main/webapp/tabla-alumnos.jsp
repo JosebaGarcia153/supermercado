@@ -1,9 +1,13 @@
 <%@page import="com.ipartek.formacion.modelo.Usuario"%>
 <%@page import="java.util.ArrayList"%>
 
-<a href="index.jsp">VOLVER</a>
+<jsp:include page ="includes/cabecera.jsp">
+	<jsp:param  name="pagina" value="tabla-a" />
+	<jsp:param name="title" value="Tabla de Alumnos" />
+</jsp:include>
 
-<h1>Tabla con Alumnos</h1>
+
+<h1 class="mt-5 pt-5">Tabla con Alumnos</h1>
 
 <style>
 	td { border:1px solid black }
@@ -16,20 +20,22 @@
 
 %>
 
-
-<table style="width:100%; border:1px solid black;">	
-	<tr>
-		<th>id</th>
-		<th>Nombre</th>
-	</tr>
+<table id="table">	
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>Nombre</th>
+		</tr>
+	</thead>
 	
+	<tbody>
 	<% for( Usuario u : alumnos ){ %>
-	
 		<tr>
 			<td><%=u.getId()%></td>
 			<td><%=u.getNombre()%></td>
 		</tr>
-
-	
 	<% } %>
+	</tbody>
 </table>
+
+<%@include file="includes/pie.jsp" %>
