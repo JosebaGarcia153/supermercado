@@ -23,10 +23,10 @@ private static ProductoDAOImpl instance = null;
 		return instance;
 	}
 	
-	private final String SQL_CREATE = "INSERT INTO producto (nombre, id_usuario) VALUES ( ? , 1); ";
-	private final String SQL_READ_ALL = "SELECT id, nombre FROM producto ORDER BY nombre ASC; ";
-	private final String SQL_READ_BY_ID = "SELECT id, nombre FROM producto WHERE id = ? ;";
-	private final String SQL_UPDATE = "UPDATE producto SET nombre = ? WHERE id = ?; ";
+	private final String SQL_CREATE = "INSERT INTO producto (nombre, precio, imagen, id_usuario) VALUES ( ?, ?, ?, 1); ";
+	private final String SQL_READ_ALL = "SELECT id, nombre, precio, imagen FROM producto ORDER BY nombre ASC; ";
+	private final String SQL_READ_BY_ID = "SELECT id, nombre, precio, imagen FROM producto WHERE id = ? ;";
+	private final String SQL_UPDATE = "UPDATE producto SET nombre = ?, precio = ?, imagen = ? WHERE id = ?; ";
 	private final String SQL_DELETE = "DELETE FROM producto WHERE id = ?; ";
 	
 	@Override
@@ -44,9 +44,13 @@ private static ProductoDAOImpl instance = null;
 
 				int id = rs.getInt("id");
 				String nombre = rs.getString("nombre");
+				double precio = rs.getDouble("precio");
+				String imagen = rs.getString("imagen");
 
 				Producto p = new Producto(nombre);
 				p.setId(id);
+				p.setPrecio(precio);
+				p.setImagen(imagen);
 
 				registro.add(p);		
 			}						
@@ -76,9 +80,14 @@ private static ProductoDAOImpl instance = null;
 
 					id = rs.getInt("id");
 					String nombre = rs.getString("nombre");
+					double precio = rs.getDouble("precio");
+					String imagen = rs.getString("imagen");
+					
 					
 					p.setNombre(nombre);
 					p.setId(id);
+					p.setPrecio(precio);
+					p.setImagen(imagen);
 					
 				} else {
 					
@@ -103,6 +112,8 @@ private static ProductoDAOImpl instance = null;
 				){
 			
 			pst.setString(1, prod.getNombre());
+			pst.setDouble(2, prod.getPrecio());
+			pst.setString(3, prod.getImagen());
 
 			int affectedRows = pst.executeUpdate();
 
@@ -110,6 +121,7 @@ private static ProductoDAOImpl instance = null;
 				
 				System.out.println("Numero de registros creados " + affectedRows);
 				
+				//conseguir el ID
 				try ( ResultSet rsKeys = pst.getGeneratedKeys(); ) {
 					
 					if (rsKeys.next()) {
@@ -145,7 +157,9 @@ private static ProductoDAOImpl instance = null;
 				){
 			
 			pst.setString(1, prod.getNombre());
-			pst.setInt(2, prod.getId());
+			pst.setDouble(2, prod.getPrecio());
+			pst.setString(3, prod.getImagen());
+			pst.setInt(4, prod.getId());
 
 			int affectedRows = pst.executeUpdate();
 
@@ -188,6 +202,12 @@ private static ProductoDAOImpl instance = null;
 
 	@Override
 	public ArrayList<Producto> readByNombre(String nombre) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Producto> readAllByPrice(int minPrice, int maxPrice) {
 		// TODO Auto-generated method stub
 		return null;
 	}

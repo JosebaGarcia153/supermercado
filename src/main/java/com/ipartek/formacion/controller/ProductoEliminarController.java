@@ -50,7 +50,7 @@ public class ProductoEliminarController extends HttpServlet {
 		} finally {
 			
 			ArrayList<Producto> productos = dao.readAll();
-			request.setAttribute("producto",  productos);
+			request.setAttribute("productos",  productos);
 			request.setAttribute("mensaje", mensaje);
 			request.getRequestDispatcher("tabla-producto.jsp").forward(request, response);
 		}

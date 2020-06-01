@@ -7,7 +7,7 @@
 </jsp:include>
 
 
-<h1 class="mt-5 pt-5">Tabla con Alumnos</h1>
+<h1>Tabla con Alumnos</h1>
 
 <style>
 	td { border:1px solid black }

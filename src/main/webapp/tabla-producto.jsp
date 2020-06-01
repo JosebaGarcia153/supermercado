@@ -6,7 +6,7 @@
 	<jsp:param name="title" value="Tabla de Productos" />
 </jsp:include>
 
-	<h1 class="mt-5 pt-5">Tabla con Productos</h1>
+	<h1>Tabla con Productos</h1>
 
 	<%
 		// Podemos usar el ${}  "EL" - "Expresion Language" en los JSPs
@@ -19,6 +19,8 @@
 			<tr>
 				<td>Id</td>
 				<td>Nombre</td>
+				<td>Precio</td>
+				<td>Imagen</td>
 				<td>Operaciones</td>
 			</tr>
 		</thead>
@@ -30,6 +32,8 @@
 						// no hace falta usar el getter p.id == p.getId()
 					%>
 					<td>${p.nombre}</td>
+					<td>${p.precio}</td>
+					<td><img src="${p.imagen}" class="img-thumbnail" alt="imagen"></td>
 					<td>
 						<a href="producto?id=${p.id}"><i class="fas fa-edit fa-lg"></i></a>
 						<a href="producto-eliminar?id=${p.id}"><i class="fas fa-trash fa-lg"></i></a>	

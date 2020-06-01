@@ -3,6 +3,7 @@ body {
 }
 
 main {
+	margin-top: 4rem;
     min-height: 80vh;
 }
 

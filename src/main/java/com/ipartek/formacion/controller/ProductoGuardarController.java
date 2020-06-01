@@ -72,6 +72,8 @@ public class ProductoGuardarController extends HttpServlet {
 			// type="text" name="nombre" placeholder="Escribe el nombre del producto">
 			String idParametro = request.getParameter("id");
 			String nombreParametro = request.getParameter("nombre");
+			String precioParametro = request.getParameter("precio");
+			String imagenParametro = request.getParameter("imagen");
 
 			if ("".equalsIgnoreCase(nombreParametro)) {
 
@@ -80,9 +82,13 @@ public class ProductoGuardarController extends HttpServlet {
 			} else {
 
 				int id = Integer.parseInt(idParametro);
+				double precio = Double.parseDouble(precioParametro);
 
 				producto.setId(id);
 				producto.setNombre(nombreParametro);
+				producto.setPrecio(precio);
+				producto.setImagen(imagenParametro);
+				
 
 				if (id == 0) {
 					

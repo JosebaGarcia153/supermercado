@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -16,7 +18,7 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
-    
+     
     <title> ${param.title} | Supermercado</title>
   </head>
   <body>
@@ -36,20 +38,32 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item" ${ ( 'inicio' eq param.pagina ) ? 'active' : '' }>
               <a class="nav-link" href="index.jsp">Inicio</a>
-            </li>
-            <li class="nav-item ${ ( 'tabla-a' eq param.pagina ) ? 'active' : '' }">
-              <a class="nav-link" href="ver-tabla-alumnos">Tabla Alumnos</a>
-            </li>
-            <li class="nav-item ${ ( 'tabla-p' eq param.pagina ) ? 'active' : '' }">
-                <a class="nav-link" href="ver-tabla-producto">Tabla Producto</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login.html">Iniciar Sesión</a>
-            </li>
+            
+            <c:if test="${ not empty isLogeado }">
+            	<li class="nav-item ${ ( 'tabla-a' eq param.pagina ) ? 'active' : '' }">
+            		<a class="nav-link" href="ver-tabla-alumnos">Alumnos</a>
+            	</li>
+            	<li class="nav-item">
+              		<a class="nav-link ${ ( 'tabla-p' eq param.pagina ) ? 'active' : '' } "  href="ver-tabla-producto">Productos</a>
+            	</li>
+            </c:if>	
             
           </ul>
+          
+          <span class="form-inline">
+         	<c:if test="${ empty isLogeado }">
+            	  <a class="nav-link  btn btn-outline-warning" href="login.jsp">Iniciar Sesión</a>
+            </c:if>
+            
+            <c:if test="${ not empty isLogeado }">
+            	<span class="badge badge-pill badge-light mr-3">${nombreUsuario}</span>
+            	<a class="nav-link  btn btn-outline-light" href="logout">Cerrar Sesión</a>
+            </c:if>     
+         </span>
         
         </div>
       </nav>
       
       <main role="main" class="container mb-3">
+      
+      	<jsp:include page="alerta.jsp"></jsp:include>

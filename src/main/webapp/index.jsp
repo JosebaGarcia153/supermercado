@@ -5,7 +5,7 @@
 	<jsp:param name="title" value="Inicio" />
 </jsp:include>
 
-<h1 class="mt-5 pt-5">Pagina principal</h1>
+<h1>Pagina principal</h1>
 
 
 <%

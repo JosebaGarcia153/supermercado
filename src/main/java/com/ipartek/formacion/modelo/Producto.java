@@ -11,7 +11,7 @@ public class Producto {
 		this.id = 0;
 		this.nombre = "";
 		this.precio = 0;
-		this.imagen = "";
+		this.imagen = "https://picsum.photos/100/100";
 	}
 	
 	public Producto(String nombre) {

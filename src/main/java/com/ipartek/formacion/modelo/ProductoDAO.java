@@ -5,4 +5,6 @@ import java.util.ArrayList;
 public interface ProductoDAO<P> extends CrudAble<Producto> {
 	
 	ArrayList<Producto> readByNombre(String nombre) throws Exception;
+	
+	ArrayList<Producto> readAllByPrice(int minPrice, int maxPrice);
 }
