@@ -3,6 +3,7 @@ package com.ipartek.formacion.controller;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,6 +39,16 @@ public class LoginController extends HttpServlet {
 		
 		String nombre = request.getParameter("name");
 		String pass = request.getParameter("pass");
+		String idioma = request.getParameter("lang");
+		
+		//guardar cookie de idioma
+		Cookie cIdioma = new Cookie("cIdioma", idioma);
+		cIdioma.setMaxAge (60*1*60*365/5); //5 años
+		//guardar cookie
+		response.addCookie(cIdioma);
+		
+		
+		
 		
 		HttpSession session = request.getSession();
 		
