@@ -39,7 +39,7 @@
             <li class="nav-item" ${ ( 'inicio' eq param.pagina ) ? 'active' : '' }>
               <a class="nav-link" href="index.jsp">Inicio</a>
             
-            <c:if test="${ not empty isLogeado }">
+            <c:if test="${ not empty usuario_login }">
             	<li class="nav-item ${ ( 'tabla-a' eq param.pagina ) ? 'active' : '' }">
             		<a class="nav-link" href="ver-tabla-alumnos">Alumnos</a>
             	</li>
@@ -50,13 +50,15 @@
             
           </ul>
           
+          ${usuario_login}
+          
           <span class="form-inline">
-         	<c:if test="${ empty isLogeado }">
+         	<c:if test="${ empty usuario_login }">
             	  <a class="nav-link  btn btn-outline-warning" href="login.jsp">Iniciar Sesión</a>
             </c:if>
             
-            <c:if test="${ not empty isLogeado }">
-            	<span class="badge badge-pill badge-light mr-3">${nombreUsuario}</span>
+            <c:if test="${ not empty usuario_login }">
+            	<span class="badge badge-pill badge-light mr-3">${usuario_login.nombre}</span>
             	<a class="nav-link  btn btn-outline-light" href="logout">Cerrar Sesión</a>
             </c:if>     
          </span>

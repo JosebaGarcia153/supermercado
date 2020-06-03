@@ -58,7 +58,7 @@ public class LogoutController extends HttpServlet {
 				break;
 		
 		}
-		//ATENCION: esto ba despues de las cookies para que funcionen
+		//ATENCION: esto va despues de las cookies para que funcionen
 		HttpSession session = request.getSession();
 		session.invalidate();
 		session = null;

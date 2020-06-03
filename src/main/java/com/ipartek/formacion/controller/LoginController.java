@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ipartek.formacion.modelo.Usuario;
+import com.ipartek.formacion.modelo.UsuarioDAOImpl;
+
 /**
  * Servlet implementation class LoginController
  */
@@ -43,27 +46,26 @@ public class LoginController extends HttpServlet {
 		
 		//guardar cookie de idioma
 		Cookie cIdioma = new Cookie("cIdioma", idioma);
-		cIdioma.setMaxAge (60*1*60*365/5); //5 años
+		cIdioma.setMaxAge (60*1*60*365*5); //5 años
 		//guardar cookie
 		response.addCookie(cIdioma);
 		
-		
-		
-		
 		HttpSession session = request.getSession();
 		
-		//TODO validar contra BBDD
-		if ("admin".equals(nombre) && "123456".equals(pass)) {
+		UsuarioDAOImpl dao = UsuarioDAOImpl.getInstance();
+		Usuario usuario = dao.existe(nombre, pass);
+		
+		if (usuario != null) {
 			
 			session.setMaxInactiveInterval (60*5); //la sesion se cierra si esta 5 minutos inactiva
-			session.setAttribute("isLogeado", true );
-			session.setAttribute("nombreUsuario", "Admin" );
+			session.setAttribute("usuario_login", usuario );
 			
 			
 			request.setAttribute("alerta", new Alerta("success", "Estas dentro"));
 			request.getRequestDispatcher("index.jsp").forward(request, response);;
 			
 		} else {
+			
 			
 			request.setAttribute("alerta", new Alerta("warning", "Credenciales incorrectas"));
 			request.getRequestDispatcher("login.jsp").forward(request, response);

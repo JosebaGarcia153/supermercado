@@ -22,11 +22,14 @@ private static UsuarioDAOImpl instance = null;
 		}	
 		return instance;
 	}
-	
-	private final String SQL_CREATE = "INSERT INTO usuario (nombre, contrasenia, id_rol) VALUES ( ?, '123456', 1 ); ";
+	//executeQuerys => ResultSet
 	private final String SQL_READ_ALL = "SELECT id, nombre FROM usuario ORDER BY nombre ASC; ";
 	private final String SQL_READ_BY_ID = "SELECT id, nombre FROM usuario WHERE id = ? ;";
 	private final String SQL_READ_BY_NAME = "SELECT id, nombre FROM usuario WHERE nombre LIKE ? ;";
+	private final String SQL_EXISTE = "SELECT id, nombre, contrasenia, id_rol FROM usuario WHERE nombre = ? AND contrasenia = ? ;";
+	
+	//executeUpdate => int
+	private final String SQL_CREATE = "INSERT INTO usuario (nombre, contrasenia, id_rol) VALUES ( ?, '123456', 1 ); ";
 	private final String SQL_UPDATE = "UPDATE usuario SET nombre = ? WHERE id = ?; ";
 	private final String SQL_DELETE = "DELETE FROM usuario WHERE id = ?; ";
 	
@@ -221,5 +224,35 @@ private static UsuarioDAOImpl instance = null;
 			}
 		}
 		return u;
+	}
+
+	@Override
+	public Usuario existe(String nombre, String password) {
+		
+		Usuario usuario = null;
+		
+		try(	Connection conexion = ConnectionManager.getConnection();
+				PreparedStatement pst = conexion.prepareStatement(SQL_EXISTE);	
+				) {
+			
+			pst.setString(1, nombre);
+			pst.setString(2, password);
+			
+			System.out.println("SQL = " + pst);
+			
+			try (ResultSet rs = pst.executeQuery()) {
+				
+				if (rs.next()) {
+					usuario = new Usuario();
+					usuario.setId(rs.getInt("id"));
+					usuario.setNombre(rs.getString("nombre"));
+				}
+			} //2nd try
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return usuario;
 	}
 }
