@@ -40,7 +40,7 @@
               <a class="nav-link" href="index.jsp">Inicio</a>
             
             <c:if test="${ not empty usuario_login }">
-            	<li class="nav-item ${ ( 'tabla-a' eq param.pagina ) ? 'active' : '' }">
+            	<li class="nav-item ${ ( 'tabla-u' eq param.pagina ) ? 'active' : '' }">
             		<a class="nav-link" href="ver-tabla-alumnos">Alumnos</a>
             	</li>
             	<li class="nav-item">
@@ -50,7 +50,7 @@
             
           </ul>
           
-          ${usuario_login}
+          TOSTRING => ${usuario_login}
           
           <span class="form-inline">
          	<c:if test="${ empty usuario_login }">

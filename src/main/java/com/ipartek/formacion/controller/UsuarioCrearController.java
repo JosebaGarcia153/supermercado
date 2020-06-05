@@ -16,21 +16,37 @@ import com.ipartek.formacion.modelo.Usuario;
 @WebServlet("/usuario-crear")
 public class UsuarioCrearController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static String VIEW_LIST = "usuario-lista.jsp";
+    private static String VIEW_FORM = "usuario-formulario.jsp";
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UsuarioCrearController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		try {
+			String parametroId = request.getParameter("id");
+
+			Usuario usuario = new Usuario();
+
+			if (parametroId != null) {
+
+				int id = Integer.parseInt(parametroId);
+				UsuarioDAOImpl dao = UsuarioDAOImpl.getInstance();
+				usuario = dao.readById(id);
+			}
+
+			request.setAttribute("usuario", usuario);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			// ir a la nueva vista / jsp
+			request.getRequestDispatcher("formulario-usuario.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -38,32 +54,44 @@ public class UsuarioCrearController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	
+		UsuarioDAOImpl dao = UsuarioDAOImpl.getInstance();
+		
+		
 		//Recoger los valores del formulario
 		//El nombre del parametro debe coincidir con el atributo name del input <input type="text" name="nombre" placeholder="Escribe el nombre del producto">
 		String nombre = request.getParameter("nombre");
+		String idParametro = request.getParameter("id");
+		int id = Integer.parseInt(idParametro);
 		
-		UsuarioDAOImpl dao = UsuarioDAOImpl.getInstance();
+		//Settear parametros al pojo
 		Usuario usuario = new Usuario();
-		
 		usuario.setNombre(nombre);
+		usuario.setId(id);
 		
 		String mensaje = "";
 		
 		try {
-			dao.create(usuario);
-			mensaje = "Producto creado con exito";
+			if (id == 0) {
+				
+				dao.create(usuario);
+				
+			} else {
+
+				dao.update(usuario);
+			}
 			
 		} catch (Exception e) {
 			
 			mensaje = "Lo sentimos pero hemos tenido una Excepcion: " + e.getMessage();
 	 		e.printStackTrace();
-			}
+		}
 		
-			//Enviar datos a la vista
-			request.setAttribute("mensaje", mensaje);
-			
-			//Ir a la nueva vista/jsp
-			request.getRequestDispatcher("formulario-usuario.jsp").forward(request,response);
+		//Enviar datos a la vista
+		mensaje = "Datos guardados";
+		request.setAttribute("mensaje", mensaje);
+		request.setAttribute("usuario", usuario);
+		
+		//Ir a la nueva vista/jsp
+		request.getRequestDispatcher("formulario-usuario.jsp").forward(request,response);
 	}
 }

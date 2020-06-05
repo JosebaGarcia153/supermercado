@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.hibernate.validator.internal.util.Contracts;
+
 public class UsuarioDAOImpl implements UsuarioDAO<Usuario> {
 	
 private static UsuarioDAOImpl instance = null;
@@ -243,9 +245,7 @@ private static UsuarioDAOImpl instance = null;
 			try (ResultSet rs = pst.executeQuery()) {
 				
 				if (rs.next()) {
-					usuario = new Usuario();
-					usuario.setId(rs.getInt("id"));
-					usuario.setNombre(rs.getString("nombre"));
+					usuario = mapper(rs);
 				}
 			} //2nd try
 		} catch (Exception e) {
@@ -254,5 +254,18 @@ private static UsuarioDAOImpl instance = null;
 		}
 		
 		return usuario;
+	}
+	
+	private Usuario mapper( ResultSet rs ) throws SQLException {
+		
+		Usuario usuario = new Usuario();
+		
+		usuario.setId(rs.getInt("id"));
+		usuario.setNombre(rs.getString("nombre"));
+		usuario.setContrasenia( rs.getString("contrasenia"));
+		usuario.setIdRol( rs.getInt("id_rol"));
+		
+		return usuario;
+		
 	}
 }

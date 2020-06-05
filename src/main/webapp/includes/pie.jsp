@@ -7,8 +7,6 @@
      </div>
 	
 	
-	
-    
 	<!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -16,14 +14,11 @@
     
     <!-- datatables -->
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-
+	
+		<!-- cifrado en MD5 -->
+ 	<script src="js/md5.min.js"></script>
+ 	
     <!-- custom js -->
-    <script>
-        // ejecuta la funcion cuando todo el documento de html DOM este listo y cargado
-        $(document).ready(function() {
-            // seleccion por id => #example y ejecuta el plugin .DataTable();
-            $('#table').DataTable();
-        });
-    </script>  
+    <script src="js/custom.js"></script>
   </body>
 </html>

@@ -13,16 +13,16 @@ import com.ipartek.formacion.modelo.Usuario;
 import com.ipartek.formacion.modelo.UsuarioDAOImpl;
 
 /**
- * Servlet implementation class TablaAlumnoController
+ * Servlet implementation class ProductoEliminarController
  */
-@WebServlet("/ver-tabla-usuarios")
-public class TablaUsuarioController extends HttpServlet {
+@WebServlet("/usuario-eliminar")
+public class UsuarioEliminarController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TablaUsuarioController() {
+    public UsuarioEliminarController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,25 +31,37 @@ public class TablaUsuarioController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		
+		String parametroId = request.getParameter("id");
+		int id = Integer.parseInt(parametroId);
+		
+		UsuarioDAOImpl dao = UsuarioDAOImpl.getInstance();
+		String mensaje = "";
+		
+		try {
+			Usuario u = dao.delete(id);
+			mensaje = "Eliminado " + u.getNombre();
+			
+		} catch (Exception e) {
+			
+			mensaje = "Error " + e.getMessage();
+			e.printStackTrace();
+			
+		} finally {
+			
+			ArrayList<Usuario> usuarios = dao.readAll();
+			request.setAttribute("usuarios",  usuarios);
+			request.setAttribute("mensaje", mensaje);
+			request.getRequestDispatcher("tabla-usuarios.jsp").forward(request, response);
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//conseguir los alumnos de la base de datos
-		
-		UsuarioDAOImpl dao = UsuarioDAOImpl.getInstance();
-		ArrayList<Usuario> usuarios = dao.readAll();
-		
-		//enviar la informacion a la vista
-		request.setAttribute("usuarios",  usuarios);
-		
-		
-		//ir a la nueva vista o jsp
-		request.getRequestDispatcher("tabla-usuarios.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+				doGet(request, response);
 	}
 
 }

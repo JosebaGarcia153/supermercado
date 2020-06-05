@@ -3,11 +3,11 @@
 	<jsp:param name="title" value="Login" />
 </jsp:include>
 
-<form action="login" method="post">
+<form action="login" method="post" onsubmit="cifrar()">
 
 	<input type="text" name="name" placeholder="Tu Nombre">
 	<br/>
-	<input type="password" name="pass" placeholder="Tu Contrasenia">
+	<input type="password" id="pass" name="pass" placeholder="Tu Contrasenia">
 	<br/>
 	
 	<label for="lang">Idioma</label>
