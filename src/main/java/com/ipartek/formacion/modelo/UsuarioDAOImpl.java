@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.hibernate.validator.internal.util.Contracts;
 
 public class UsuarioDAOImpl implements UsuarioDAO<Usuario> {
 	
@@ -25,14 +24,14 @@ private static UsuarioDAOImpl instance = null;
 		return instance;
 	}
 	//executeQuerys => ResultSet
-	private final String SQL_READ_ALL = "SELECT id, nombre FROM usuario ORDER BY nombre ASC; ";
-	private final String SQL_READ_BY_ID = "SELECT id, nombre FROM usuario WHERE id = ? ;";
-	private final String SQL_READ_BY_NAME = "SELECT id, nombre FROM usuario WHERE nombre LIKE ? ;";
-	private final String SQL_EXISTE = "SELECT id, nombre, contrasenia, id_rol FROM usuario WHERE nombre = ? AND contrasenia = ? ;";
+	private final String SQL_READ_ALL = "SELECT id, nombre, contrasenia, id_rol FROM usuario ORDER BY id DESC; ";
+	private final String SQL_READ_BY_ID = "SELECT id, nombre, contrasenia, id_rol FROM usuario WHERE id = ?; ";
+	private final String SQL_READ_BY_NAME = "SELECT id, nombre, contrasenia, id_rol FROM usuario WHERE nombre LIKE ?; ";
+	private final String SQL_EXISTE = "SELECT id, nombre, contrasenia, id_rol FROM usuario WHERE nombre = ? AND contrasenia = ?; ";
 	
 	//executeUpdate => int
-	private final String SQL_CREATE = "INSERT INTO usuario (nombre, contrasenia, id_rol) VALUES ( ?, '123456', 1 ); ";
-	private final String SQL_UPDATE = "UPDATE usuario SET nombre = ? WHERE id = ?; ";
+	private final String SQL_CREATE = "INSERT INTO usuario(nombre, contrasenia, id_rol) VALUES( ? ,'123456',1 ); ";
+	private final String SQL_UPDATE = "UPDATE usuario SET nombre = ?, contrasenia = ? WHERE id = ?; ";
 	private final String SQL_DELETE = "DELETE FROM usuario WHERE id = ?; ";
 	
 	@Override
@@ -48,13 +47,7 @@ private static UsuarioDAOImpl instance = null;
 
 			while (rs.next()) {
 
-				int id = rs.getInt("id");
-				String nombre = rs.getString("nombre");
-
-				Usuario u = new Usuario(nombre);
-				u.setId(id);
-
-				registro.add(u);		
+				registro.add(mapper(rs));		
 			}						
 		} catch (Exception e) {
 
@@ -80,11 +73,7 @@ private static UsuarioDAOImpl instance = null;
 
 				if (rs.next()) {
 
-					id = rs.getInt("id");
-					String nombre = rs.getString("nombre");
-
-					u.setNombre(nombre);
-					u.setId(id);
+					u = mapper(rs);
 
 				} else {
 
@@ -100,7 +89,6 @@ private static UsuarioDAOImpl instance = null;
 	public ArrayList<Usuario> readByName(String nombre) throws Exception {
 		
 		ArrayList<Usuario> registro = new ArrayList<Usuario>();
-		Usuario u = new Usuario();
 
 		try (
 				Connection conexion = ConnectionManager.getConnection();
@@ -113,13 +101,7 @@ private static UsuarioDAOImpl instance = null;
 
 				if (rs.next()) {
 
-					int id = rs.getInt("id");
-					nombre = rs.getString("nombre");
-
-					u.setNombre(nombre);
-					u.setId(id);
-					
-					registro.add(u);
+					registro.add(mapper(rs));
 
 				} else {
 
@@ -187,7 +169,8 @@ private static UsuarioDAOImpl instance = null;
 				){
 			
 			pst.setString(1, user.getNombre());
-			pst.setInt(2, user.getId());
+			pst.setString(2, user.getContrasenia());
+			pst.setInt(3, user.getId());
 
 			int affectedRows = pst.executeUpdate();
 

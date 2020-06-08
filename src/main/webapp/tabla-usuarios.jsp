@@ -23,7 +23,7 @@
 		<tr>
 			<td>${u.id}</td>
 			<td>${u.nombre}</td>
-			<td></td>
+			<td>${u.idRol}</td>
 			<td>
 				<a href="usuario-crear?id=${u.id}"><i class="fas fa-edit fa-lg"></i></a>
 				<a href="usuario-eliminar?id=${u.id}"><i class="fas fa-trash fa-lg"></i></a>	

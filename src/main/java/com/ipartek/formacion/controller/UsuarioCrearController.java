@@ -16,8 +16,6 @@ import com.ipartek.formacion.modelo.Usuario;
 @WebServlet("/usuario-crear")
 public class UsuarioCrearController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static String VIEW_LIST = "usuario-lista.jsp";
-    private static String VIEW_FORM = "usuario-formulario.jsp";
        
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -60,23 +58,55 @@ public class UsuarioCrearController extends HttpServlet {
 		//Recoger los valores del formulario
 		//El nombre del parametro debe coincidir con el atributo name del input <input type="text" name="nombre" placeholder="Escribe el nombre del producto">
 		String nombre = request.getParameter("nombre");
+		String pass = request.getParameter("pass");
+		
 		String idParametro = request.getParameter("id");
 		int id = Integer.parseInt(idParametro);
 		
+		String rolParametro = request.getParameter("rol");
+		int rol = Integer.parseInt(rolParametro);
+		
+		// parametros para cambio contraseña
+		String passNuevo = request.getParameter("passNuevo");
+		String passNuevoConfirmacion = request.getParameter("passNuevoConfirmacion");
+		
 		//Settear parametros al pojo
 		Usuario usuario = new Usuario();
-		usuario.setNombre(nombre);
-		usuario.setId(id);
 		
 		String mensaje = "";
 		
 		try {
+
+			usuario.setNombre(nombre);
+			usuario.setId(id);
+			usuario.setIdRol(rol);
+			
 			if (id == 0) {
 				
+				usuario.setContrasenia(pass);
 				dao.create(usuario);
 				
 			} else {
-
+				
+				if ( !"".equals(passNuevoConfirmacion) ) {
+					
+					if (passNuevo.equals(passNuevoConfirmacion)) {				
+					
+						// cambio de contraseña
+						usuario.setContrasenia(passNuevo);
+						
+					} else {
+						
+						throw new Exception("Las contraseñas no coinciden");
+					}
+				} else {
+					
+					// mantener la contraseña y NO cambiarla
+					// recupero usuario de la base datos para mantener su contraseña y no cambiarla 
+					Usuario uGuardado = dao.readById(id);				
+					usuario.setContrasenia(uGuardado.getContrasenia());
+					
+				}
 				dao.update(usuario);
 			}
 			
