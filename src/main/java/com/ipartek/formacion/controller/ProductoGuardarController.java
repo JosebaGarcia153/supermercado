@@ -46,7 +46,7 @@ public class ProductoGuardarController extends HttpServlet {
 		} finally {
 
 			// ir a la nueva vista / jsp
-			request.getRequestDispatcher("formulario-producto.jsp").forward(request, response);
+			request.getRequestDispatcher("views/ejemplos/formulario-producto.jsp").forward(request, response);
 		}
 	}
 
@@ -120,13 +120,13 @@ public class ProductoGuardarController extends HttpServlet {
 
 				request.setAttribute("mensaje", mensaje);
 				request.setAttribute("productos", dao.readAll());
-				request.getRequestDispatcher("tabla-producto.jsp").forward(request, response);
+				request.getRequestDispatcher("views/ejemplos/tabla-producto.jsp").forward(request, response);
 				
 			} else {
 				
 				request.setAttribute("validacion", validacion);
 				request.setAttribute("producto", producto);
-				request.getRequestDispatcher("formulario-producto.jsp").forward(request, response);
+				request.getRequestDispatcher("views/ejemplos/formulario-producto.jsp").forward(request, response);
 			}
 		} // finally
 	}// post

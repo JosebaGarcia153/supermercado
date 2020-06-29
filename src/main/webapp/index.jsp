@@ -16,8 +16,8 @@
 <a href="ver-tabla-producto">Ver productos en tabla</a><br/>
 <a href="producto">Crear Producto</a><br/>
 <a href="usuario-crear">Crear Usuario</a><br/>
-<a href="getYpost.jsp">GET y POST</a><br/>
-<a href="formulario.jsp">Ejemplo formulario completo</a><br/>
+<a href="views/ejemplos/getYpost.jsp">GET y POST</a><br/>
+<a href="views/ejemplos/formulario.jsp">Ejemplo formulario completo</a><br/>
 <a href="MiPrimerServlet?nombre=joseba&apellido=garcia&email=aaaaa">Mi Primer Servlet</a><br/>
 
 <%@include file="includes/pie.jsp" %>

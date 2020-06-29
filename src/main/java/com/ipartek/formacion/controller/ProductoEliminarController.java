@@ -17,15 +17,8 @@ import com.ipartek.formacion.modelo.ProductoDAOImpl;
  */
 @WebServlet("/producto-eliminar")
 public class ProductoEliminarController extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ProductoEliminarController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,7 +45,7 @@ public class ProductoEliminarController extends HttpServlet {
 			ArrayList<Producto> productos = dao.readAll();
 			request.setAttribute("productos",  productos);
 			request.setAttribute("mensaje", mensaje);
-			request.getRequestDispatcher("tabla-producto.jsp").forward(request, response);
+			request.getRequestDispatcher("views/ejemplos/tabla-producto.jsp").forward(request, response);
 		}
 	}
 
@@ -60,8 +53,8 @@ public class ProductoEliminarController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-				doGet(request, response);
+		
+		doGet(request, response);
 	}
 
 }

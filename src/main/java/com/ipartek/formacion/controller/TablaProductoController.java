@@ -17,15 +17,8 @@ import com.ipartek.formacion.modelo.ProductoDAOImpl;
  */
 @WebServlet("/ver-tabla-producto")
 public class TablaProductoController extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TablaProductoController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,7 +42,7 @@ public class TablaProductoController extends HttpServlet {
 		
 		
 		//ir a la nueva vista o jsp
-		request.getRequestDispatcher("tabla-producto.jsp").forward(request, response);
+		request.getRequestDispatcher("views/ejemplos/tabla-producto.jsp").forward(request, response);
 	}
 
 }

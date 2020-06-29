@@ -7,6 +7,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Todas las rutas relativas comienzan por el href indicado -->
+    <!--  ${pageContext.request.contextPath} == http://localhost:8080/AppSupermercado -->
+    <base href="${pageContext.request.contextPath}/" />
+    
     <!-- fontawesome 5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
  
@@ -38,7 +42,7 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item" ${ ( 'inicio' eq param.pagina ) ? 'active' : '' }>
               <a class="nav-link" href="index.jsp">Inicio</a>
-            
+            </li>
             <c:if test="${ not empty usuario_login }">
             	<li class="nav-item ${ ( 'tabla-u' eq param.pagina ) ? 'active' : '' }">
             		<a class="nav-link" href="ver-tabla-alumnos">Alumnos</a>
@@ -54,7 +58,7 @@
           
           <span class="form-inline">
          	<c:if test="${ empty usuario_login }">
-            	  <a class="nav-link  btn btn-outline-warning" href="login.jsp">Iniciar Sesión</a>
+            	  <a class="nav-link  btn btn-outline-warning" href="views/ejemplos/login.jsp">Iniciar Sesión</a>
             </c:if>
             
             <c:if test="${ not empty usuario_login }">
@@ -69,3 +73,8 @@
       <main role="main" class="container mb-3">
       
       	<jsp:include page="alerta.jsp"></jsp:include>
+      	
+      	<!-- 
+      		cuidado porque esto lo incluye en funcion de la URL en la que estamos
+      	     < jsp : include page="alerta.jsp"></ jsp : include> 
+      	-->

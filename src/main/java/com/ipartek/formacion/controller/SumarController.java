@@ -32,7 +32,7 @@ public class SumarController extends HttpServlet {
 		request.setAttribute("op2", parametro2);	
 		
 		request.setAttribute("resultado", resultado);		
-		request.getRequestDispatcher("getYpost.jsp").forward(request, response);
+		request.getRequestDispatcher("views/ejemplos/getYpost.jsp").forward(request, response);
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class SumarController extends HttpServlet {
 			
 		} finally {	
 			
-			request.getRequestDispatcher("getYpost.jsp").forward(request, response);
+			request.getRequestDispatcher("views/ejemplos/getYpost.jsp").forward(request, response);
 		}	
 	}
 }

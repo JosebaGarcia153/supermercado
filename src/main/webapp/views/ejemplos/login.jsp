@@ -1,4 +1,4 @@
-<jsp:include page ="includes/cabecera.jsp">
+<jsp:include page ="../../includes/cabecera.jsp">
 	<jsp:param name="pagina" value="login" />
 	<jsp:param name="title" value="Login" />
 </jsp:include>
@@ -20,4 +20,4 @@
 	<input type="submit" value="Iniciar sesion">
 </form>
 
-<%@include file="includes/pie.jsp" %>
+<%@include file="../../includes/pie.jsp" %>

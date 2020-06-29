@@ -17,15 +17,8 @@ import com.ipartek.formacion.modelo.UsuarioDAOImpl;
  */
 @WebServlet("/ver-tabla-usuarios")
 public class TablaUsuarioController extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TablaUsuarioController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,7 +42,7 @@ public class TablaUsuarioController extends HttpServlet {
 		
 		
 		//ir a la nueva vista o jsp
-		request.getRequestDispatcher("tabla-usuarios.jsp").forward(request, response);
+		request.getRequestDispatcher("views/ejemplos/tabla-usuarios.jsp").forward(request, response);
 	}
 
 }

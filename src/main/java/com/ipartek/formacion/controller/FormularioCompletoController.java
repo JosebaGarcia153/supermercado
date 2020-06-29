@@ -136,7 +136,7 @@ public class FormularioCompletoController extends HttpServlet {
 			} else {
 				
 				request.setAttribute("validaciones", validaciones);
-				request.getRequestDispatcher("formulario.jsp").forward(request, response);
+				request.getRequestDispatcher("views/ejemplos/formulario.jsp").forward(request, response);
 			}
 		}		
 	}

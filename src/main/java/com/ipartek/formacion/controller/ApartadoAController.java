@@ -60,6 +60,6 @@ public class ApartadoAController extends HttpServlet {
 		//request.getRequestDispatcher("resultadoA.jsp").forward(request, response);
 		
 		//redicreccion como RESPUESTA, el cliente automaticamente hace la 2nd REQUEST a esta URL
-		response.sendRedirect("resultadoA.jsp");
+		response.sendRedirect("views/ejemplos/resultadoA.jsp");
 	}
 }

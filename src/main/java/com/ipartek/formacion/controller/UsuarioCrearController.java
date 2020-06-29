@@ -43,7 +43,7 @@ public class UsuarioCrearController extends HttpServlet {
 		} finally {
 
 			// ir a la nueva vista / jsp
-			request.getRequestDispatcher("formulario-usuario.jsp").forward(request, response);
+			request.getRequestDispatcher("views/ejemplos/formulario-usuario.jsp").forward(request, response);
 		}
 	}
 
@@ -122,6 +122,6 @@ public class UsuarioCrearController extends HttpServlet {
 		request.setAttribute("usuario", usuario);
 		
 		//Ir a la nueva vista/jsp
-		request.getRequestDispatcher("formulario-usuario.jsp").forward(request,response);
+		request.getRequestDispatcher("views/ejemplos/formulario-usuario.jsp").forward(request,response);
 	}
 }

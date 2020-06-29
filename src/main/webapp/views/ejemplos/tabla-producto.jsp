@@ -1,7 +1,7 @@
 <%@page import="com.ipartek.formacion.modelo.Producto"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 
-<jsp:include page ="includes/cabecera.jsp">
+<jsp:include page ="../../includes/cabecera.jsp">
 	<jsp:param  name="pagina" value="tabla-p" />
 	<jsp:param name="title" value="Tabla de Productos" />
 </jsp:include>
@@ -43,4 +43,4 @@
 		</tbody>
 	</table>
 
-<%@include file="includes/pie.jsp" %>
+<%@include file="../../includes/pie.jsp" %>

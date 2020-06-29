@@ -24,10 +24,10 @@ private static UsuarioDAOImpl instance = null;
 		return instance;
 	}
 	//executeQuerys => ResultSet
-	private final String SQL_READ_ALL = "SELECT id, nombre, contrasenia, id_rol FROM usuario ORDER BY id DESC; ";
-	private final String SQL_READ_BY_ID = "SELECT id, nombre, contrasenia, id_rol FROM usuario WHERE id = ?; ";
-	private final String SQL_READ_BY_NAME = "SELECT id, nombre, contrasenia, id_rol FROM usuario WHERE nombre LIKE ?; ";
-	private final String SQL_EXISTE = "SELECT id, nombre, contrasenia, id_rol FROM usuario WHERE nombre = ? AND contrasenia = ?; ";
+	private final String SQL_READ_ALL = "SELECT id, nombre, contrasenia, id_rol FROM usuario ORDER BY id DESC LIMIT 500; ";
+	private final String SQL_READ_BY_ID = "SELECT id, nombre, contrasenia, id_rol FROM usuario WHERE id = ? LIMIT 500; ";
+	private final String SQL_READ_BY_NAME = "SELECT id, nombre, contrasenia, id_rol FROM usuario WHERE nombre LIKE ? LIMIT 500; ";
+	private final String SQL_EXISTE = "SELECT id, nombre, contrasenia, id_rol FROM usuario WHERE nombre = ? AND contrasenia = ? LIMIT 500; ";
 	
 	//executeUpdate => int
 	private final String SQL_CREATE = "INSERT INTO usuario(nombre, contrasenia, id_rol) VALUES( ? ,'123456',1 ); ";

@@ -49,6 +49,6 @@ public class ApartadoBController extends HttpServlet {
 		
 		
 		// Ir a la vista	
-		request.getRequestDispatcher("resultadoB.jsp").forward(request, response);
+		request.getRequestDispatcher("views/ejemplos/resultadoB.jsp").forward(request, response);
 	}
 }

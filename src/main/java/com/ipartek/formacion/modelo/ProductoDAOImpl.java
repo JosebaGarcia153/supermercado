@@ -202,13 +202,13 @@ private static ProductoDAOImpl instance = null;
 
 	@Override
 	public ArrayList<Producto> readByNombre(String nombre) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public ArrayList<Producto> readAllByPrice(int minPrice, int maxPrice) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }

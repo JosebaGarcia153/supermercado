@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<jsp:include page ="includes/cabecera.jsp">
+<jsp:include page ="../../includes/cabecera.jsp">
 	<jsp:param name="pagina" value="FormularioUsuario" />
 	<jsp:param name="title" value="FormularioUsuario" />
 </jsp:include>
@@ -62,4 +62,4 @@
 		</div>
 	</div>
 
-<%@include file="includes/pie.jsp" %>
+<%@include file="../../includes/pie.jsp" %>
